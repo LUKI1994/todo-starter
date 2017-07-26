@@ -23,3 +23,22 @@ sortedContainers.forEach(function(element) {
     */
   });
 });
+
+
+
+
+
+
+
+
+
+$(".js-add-list").click(function() {
+  $(".add-list-inputs").removeClass("hidden");
+  $("input:text").focus();
+  $(".add-a-list").addClass("hidden");
+})
+
+$(".list-name-input").focusout(function() {
+  $(".add-list-inputs").addClass("hidden");
+  $(".add-a-list").removeClass("hidden");
+})

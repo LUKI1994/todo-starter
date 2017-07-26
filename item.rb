@@ -13,9 +13,9 @@ class Item
 
   def display_line
     if done?
-      '- [x] ' + name
+      '[x] ' + name
     else
-      '- [ ] ' + name
+      '[ ] ' + name
     end
   end
 
@@ -29,7 +29,7 @@ class Item
 
   # returns a new item based on a line of text
   def self.new_from_line(line, index = nil)
-    status = line[3] == 'x' ? "done" : "undone"
-    new(line[6..-1], status, index)
+    status = line[1] == 'x' ? "done" : "undone"
+    new(line[4..-1], status, index)
   end
 end

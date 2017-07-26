@@ -11,12 +11,23 @@
       </div>
     </div>
     <ul class="js-sortable-items">
-      <% list.items.each_with_index do |item, index| %>
+      <% list.items.each do |item| %>
         <%= erb :"shared/_item.html", locals: {item: item} %>
       <% end %>
     </ul>
   </form>
   <form class="add-item" action="lists/<%= list.id %>/items/add" method="post">
     <input type="text" name="name" class="new-item" placeholder="Add an item..." required>
+  </form>
+</div>
+
+<div class="list list-add">
+  <form class="list-form is-idle" action="lists" method="post">
+    <div class="add-a-list js-add-list">
+      Add a List...
+    </div>
+    <div class="add-list-inputs hidden">
+      <input type="text" class="list-name-input" name="list-name" placeholder="List name...">
+    </div>
   </form>
 </div>

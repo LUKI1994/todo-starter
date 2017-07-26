@@ -10,7 +10,7 @@ end
 get "/" do
   # HINT: you can use instance variables in the view directly without passing to locals
   # such as this @title instance variable
-  @title = "Your App Name"
+  @title = "My Todo List!"
   list = List.new("0")
   list.load_from_file
   erb :"index.html", locals: {list: list}, layout: :"layout.html"
@@ -49,5 +49,13 @@ post "/lists/:id/items/add" do
     list.add(params["name"])
     list.save!
   end
+  redirect back
+end
+
+
+post "/lists" do
+  debug_params
+
+  list = List.new(params["index"])
   redirect back
 end
