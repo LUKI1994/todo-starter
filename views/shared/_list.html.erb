@@ -1,6 +1,6 @@
 <h1 id="heading"><%= @title || "Torello" %></h1>
 <div id="scroller">
-  <% lists.each_with_index do |list, idx| %>
+  <% lists.each_with_index do |list, list_Number| %>
     <div class="list elem">
     <form class="rename-list hidden" action="lists/<%= list.id %>/rename" method="post">
       <input type="text" name="new_name" placeholder="<%= list.name %>" autofocus>
@@ -16,8 +16,8 @@
           </div>
         </div>
         <ul class="js-sortable-items">
-          <% list.items.each do |item| %>
-            <%= erb :"shared/_item.html", locals: {item: item} %>
+          <% list.items.each_with_index do |item, idx| %>
+            <%= erb :"shared/_item.html", locals: {item: item, index: idx, list_Number: list_Number, list: list} %>
           <% end %>
         </ul>
       </form>

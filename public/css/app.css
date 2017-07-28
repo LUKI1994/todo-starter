@@ -146,9 +146,6 @@ button.toggle {
 li:hover > button {
   display: unset;
 }
-li:hover {
-  background-color: #8EF9F3;
-}
 .list-name-input {
   border: 1px solid #efefef;
   margin: 4px;

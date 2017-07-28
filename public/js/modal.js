@@ -1,28 +1,24 @@
-var modal = document.getElementById('myModal');
+function popUpModal(list, index) {
+  console.log("List Number: ", list)
+  console.log("Index Number: ", index)
 
-var btn = document.getElementById("myBtn");
+  const listNumber = "#" + (list - 1)
+  console.log(listNumber)
 
-var span = document.getElementsByClassName("close")[0];
+  const item = "input[name='index']"
+  console.log(item)
 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-window.onclick = function(event) {
-  if (event.target == modal) {
-      modal.style.display = "none";
-  }
+  const itemNumber = $(listNumber).siblings(item)
+  console.log(itemNumber)
 }
 
 const items = $("li.connected-items").toArray();
 
 items.forEach(function(e) {
-  e.addEventListener("click", function(popUpModal) {
-    console.log(popUpModal.target.attributes[1])
+  e.addEventListener("click", function(item) {
+    list = $(item.target).attr("data-item-sortable-id");
+    index = $(item.target).children("input[name='index']").attr("value");
+    popUpModal(list, index);
   })
 })
 

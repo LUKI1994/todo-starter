@@ -1,7 +1,17 @@
 <li class="connected-items <%= item.status %>">
   <%= item.name %>
+
+    <div id="<%= list_Number %>" class="modal" name="index">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3><%= list.name %></h3>
+        <p><%= item.name %></p>
+      </div>
+    </div>
+
     <input type="hidden" value="<%= item.name %>" name="items[][name]">
     <input type="hidden" value="<%= item.status %>" name="items[][status]">
+    <input type="hidden" value="<%= index %>" name="index">
     <button type="submit" name="toggle" value="<%= item.name %>" class="toggle <%= item.status %>">
       <%= item.done? ? "Undo" : "Done" %>
     </button>
