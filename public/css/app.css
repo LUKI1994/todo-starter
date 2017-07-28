@@ -34,7 +34,7 @@ li.done {
 .list-header {
   font-weight: bold;
   padding: 5px;
-  background-color: #44CF6C;
+  background-color: #157F1F;
   color: white;
 }
 button.toggle {
@@ -69,18 +69,6 @@ input.new-item:focus {
   border-radius: 4px;
   margin-bottom: 5px;
   box-shadow: 0 1px 0 #ccc;
-}
-a.sort-link img {
-  width: 100%;
-  opacity: 0.3;
-}
-a.sort-link {
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-}
-a.sort-link.current img {
-  opacity: 1;
 }
 
 div.triangle {
@@ -157,6 +145,9 @@ button.toggle {
 }
 li:hover > button {
   display: unset;
+}
+li:hover {
+  background-color: #8EF9F3;
 }
 .list-name-input {
   border: 1px solid #efefef;
