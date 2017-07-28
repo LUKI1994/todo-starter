@@ -1,58 +1,32 @@
 sortable("#scroller");
 
+function submitWithAjax(form) {
+  var $form = $(form);
+  var data = $form.serializeArray();
+
+  $.ajax({
+    url: $form.attr("action"),
+    method: $form.attr("method"),
+    data: data
+  })
+}
 
 const sortedContainers = sortable(".js-sortable-items", {
   forcePlaceholderSize: true,
   connectWith: "connected-items"
 });
 
-$("form.update-all").on("submit", function(event) {
-  event.preventDefault();
-  console.log("Prevent ", event.target, " from submitting");
+sortedContainers[0].addEventListener("sortupdate", function(e) {
+  console.log("Event for Sort Update occured")
+  var startList = $(e.detail.startparent);
+  var startForm = startList.parents("form");
+  submitWithAjax(startForm);
 
-  var $form = $(event.target);
-  var data = $form.serializeArray();
-
-  $.ajax ({
-    url: $form.attr("action"),
-    method: $form.attr("method"),
-    data: data
-  })
-})
-
-sortedContainers.forEach(function(element) {
-  element.addEventListener("sortupdate", function(e) {
-    var startList = $(e.detail.startparent);
-    var startForm = startList.parents("form");
-    console.log("$ Start Form:", startForm)
-    startForm.submit();
-
-
-    var currentList = $(e.detail.endparent);
-    var currentForm = currentList.parents("form");
-    console.log("$ End form", currentForm);
-    currentForm.submit();
-
-
-    /*
-
-    This event is triggered when the user stopped sorting and the DOM position has changed.
-
-    e.detail.item contains the current dragged element.
-    e.detail.index contains the new index of the dragged element (considering only list items)
-    e.detail.oldindex contains the old index of the dragged element (considering only list items)
-    e.detail.elementIndex contains the new index of the dragged element (considering all items within sortable)
-    e.detail.oldElementIndex contains the old index of the dragged element (considering all items within sortable)
-    e.detail.startparent contains the element that the dragged item comes from
-    e.detail.endparent contains the element that the dragged item was added to (new parent)
-    e.detail.newEndList contains all elements in the list the dragged item was dragged to
-    e.detail.newStartList contains all elements in the list the dragged item was dragged from
-    e.detail.oldStartList contains all elements in the list the dragged item was dragged from BEFORE it was dragged from it
-    */
-  });
+  var currentList = $(e.detail.endparent);
+  var currentForm = currentList.parents("form");
+  submitWithAjax(currentForm);
 });
 
-// Show/Hide add a list
 $(".js-add-list").click(function() {
   $(".add-list-inputs").removeClass("hidden");
   $("input:text").focus();
@@ -63,3 +37,20 @@ $(".list-name-input").focusout(function() {
   $(".add-list-inputs").addClass("hidden");
   $(".add-a-list").removeClass("hidden");
 })
+
+const rename = $(".list-header-container").toArray();
+
+rename.forEach(function(e) {
+  e.addEventListener("click", function(header) {
+    form = $(header.target).parents("form").siblings("form.rename-list")
+    form.removeClass("hidden");
+    $(header.target).addClass("hidden");
+
+    $(header.target).parents("form").siblings("form.rename-list").children().focus()
+  
+    form.focusout(function() {
+      form.addClass("hidden");
+      $(header.target).removeClass("hidden");
+    });
+  });
+});

@@ -34,6 +34,8 @@ li.done {
 .list-header {
   font-weight: bold;
   padding: 5px;
+  background-color: #44CF6C;
+  color: white;
 }
 button.toggle {
   float: right;
@@ -80,13 +82,15 @@ a.sort-link {
 a.sort-link.current img {
   opacity: 1;
 }
-.list-header-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-right: 5px;
+
+div.triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 25px 250px 0 0;
+  border-color: rgba(0, 121, 191, 0.5) transparent transparent transparent;
 }
+
 button.save {
   vertical-align: top;
   background-color: rgba(0, 121, 191, 0.5);
@@ -107,10 +111,14 @@ div.add-a-list {
   padding: 10px;
   cursor: pointer;
 }
+div.add-list-inputs {
+  border-radius: 4px;
+}
 .list-form .add-list-inputs {
   background-color: #efefef;
   margin-bottom: 0;
   padding: 5px;
+  padding-right: 15px;
 }
 .list-name-input {
   padding: 5px;
@@ -149,4 +157,22 @@ button.toggle {
 }
 li:hover > button {
   display: unset;
+}
+.list-name-input {
+  border: 1px solid #efefef;
+  margin: 4px;
+  padding: 6px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 0 #ccc;
+}
+.rename-list > input {
+  width: 100%;
+  background-color: #efefef;
+  margin-bottom: 0;
+  padding: 5px;
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  background-color: white;
 }
