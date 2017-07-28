@@ -38,4 +38,13 @@ class List
     lines = [name] + @items.map(&:display_line)
     File.write(filename, lines.join("\n"))
   end
+
+  def self.load_all
+    files = Dir["data/*.md"]
+    files.map do |f|
+      list = List.new(f[5])
+      list.load_from_file
+      list
+    end    
+  end
 end

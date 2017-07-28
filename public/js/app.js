@@ -1,11 +1,39 @@
+sortable("#scroller");
+
+
 const sortedContainers = sortable(".js-sortable-items", {
-  forcePlaceholderSize: true
+  forcePlaceholderSize: true,
+  connectWith: "connected-items"
 });
+
+$("form.update-all").on("submit", function(event) {
+  event.preventDefault();
+  console.log("Prevent ", event.target, " from submitting");
+
+  var $form = $(event.target);
+  var data = $form.serializeArray();
+
+  $.ajax ({
+    url: $form.attr("action"),
+    method: $form.attr("method"),
+    data: data
+  })
+})
 
 sortedContainers.forEach(function(element) {
   element.addEventListener("sortupdate", function(e) {
-    console.log("We will learn how to save this dynamically");
-    $("button.save").removeClass("hidden");
+    var startList = $(e.detail.startparent);
+    var startForm = startList.parents("form");
+    console.log("$ Start Form:", startForm)
+    startForm.submit();
+
+
+    var currentList = $(e.detail.endparent);
+    var currentForm = currentList.parents("form");
+    console.log("$ End form", currentForm);
+    currentForm.submit();
+
+
     /*
 
     This event is triggered when the user stopped sorting and the DOM position has changed.
@@ -24,14 +52,7 @@ sortedContainers.forEach(function(element) {
   });
 });
 
-
-
-
-
-
-
-
-
+// Show/Hide add a list
 $(".js-add-list").click(function() {
   $(".add-list-inputs").removeClass("hidden");
   $("input:text").focus();

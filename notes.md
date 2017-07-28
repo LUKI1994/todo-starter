@@ -27,7 +27,7 @@ A few things you can play with:
     POST /lists/:id/items/add
     ```
 
-- [ ] Look at `item.rb` and make sure you can explain its structure. You can type `irb`, then `require_relative "item"` to play with it. See this [screenshot](https://cl.ly/1F1v0p0v1m1y) for some examples.
+- [x] Look at `item.rb` and make sure you can explain its structure. You can type `irb`, then `require_relative "item"` to play with it. See this [screenshot](https://cl.ly/1F1v0p0v1m1y) for some examples.
 
     ```
     $ irb
@@ -35,7 +35,7 @@ A few things you can play with:
     >> Item.new("Buy milk")
     ```
 
-- [ ] Look at `list.rb` and similarly, understand what accessors are available and what methods are available. Similarly, you can test the `List` class from the code console ([screenshot](https://cl.ly/0h2y0t2Z2m1O))
+- [x] Look at `list.rb` and similarly, understand what accessors are available and what methods are available. Similarly, you can test the `List` class from the code console ([screenshot](https://cl.ly/0h2y0t2Z2m1O))
 
     ```
     >> require_relative "list" #=> true

@@ -1,19 +1,20 @@
 require 'bundler/setup'
+require 'colorize'
 Bundler.require
 
 require_relative "list"
 
 def debug_params
-  puts "PARAMS: #{params}"
+  puts "\n"
+  puts "PARAMS: #{params}".colorize(:green)
 end
 
 get "/" do
   # HINT: you can use instance variables in the view directly without passing to locals
   # such as this @title instance variable
   @title = "My Todo List!"
-  list = List.new("0")
-  list.load_from_file
-  erb :"index.html", locals: {list: list}, layout: :"layout.html"
+  lists = List.load_all
+  erb :"index.html", locals: {lists: lists}, layout: :"layout.html"
 end
 
 # UPDATE a list with id from params["id"]
@@ -25,7 +26,7 @@ post "/lists/update" do
   # no need to load from file. we will save new contents to file
 
   items = params["items"].map do |item_hash|
-    puts "creating Item from item_hash: #{item_hash}"
+    puts "creating Item from item_hash: #{item_hash}".colorize(:green)
     Item.new(item_hash["name"], item_hash["status"])
   end
   list.items = items
@@ -52,10 +53,8 @@ post "/lists/:id/items/add" do
   redirect back
 end
 
-
 post "/lists" do
   debug_params
-
-  list = List.new(params["index"])
+  file = File.open("./data/#{params["new-file"]}.md", "w") {|f| f.write("#{params["list-name"]}") }  
   redirect back
 end

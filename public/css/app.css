@@ -22,15 +22,14 @@ li.done {
   color: #999;
 }
 .list {
-    float: left;
-    background-color: #efefef;
-    vertical-align: top;
-    color: #666;
-    width: 250px;
-    font-size: 0.8em;
-    border-radius: 3px;
-    margin-right: 10px;
-    padding: 5px;
+  background-color: #efefef;
+  vertical-align: top;
+  color: #666;
+  width: 250px;
+  font-size: 0.8em;
+  border-radius: 3px;
+  margin-right: 10px;
+  padding: 5px;
 }
 .list-header {
   font-weight: bold;
@@ -126,12 +125,28 @@ div.add-a-list {
     display: block;
     padding: 0px;
 }
-
+.list-form {
+  margin-bottom: 0px;
+}
+#scroller-wrapper {
+  width: 100%;
+  background-color: red;
+}
+#scroller {
+  height: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.elem {
+  display: inline-block;
+}
 .hidden {
   display: none;
   background-color: transparent;
 }
-
-.list-form {
-  margin-bottom: 0px;
+button.toggle {
+  display:none;
+}
+li:hover > button {
+  display: unset;
 }

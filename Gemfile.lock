@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    colorize (0.8.1)
     mustermann (1.0.0)
     rack (2.0.3)
     rack-protection (2.0.0)
@@ -18,8 +19,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  colorize
   shotgun
   sinatra
 
 BUNDLED WITH
-   1.15.1
+   1.15.3
