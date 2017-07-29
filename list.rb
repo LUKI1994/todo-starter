@@ -1,4 +1,6 @@
 require_relative "item"
+require 'colorize'
+require 'fileutils'
 
 class List
   attr_reader :lines
@@ -47,4 +49,27 @@ class List
       list
     end
   end
+
+  def self.reorder(sequence)
+    Dir.mkdir 'data_temp'
+    original = []    
+    Dir["data/*.md"].each { |file| original << file[5] }
+    p sequence
+
+    sequence.each_with_index do |new_name, new_index|
+      File.open("data/#{new_index}.md", "r") do |old_file|      
+        File.open("data_temp/#{new_name}.md", "w") do |f| 
+          old_file.each_line do |line|
+            f.write line
+          end
+        end
+      end
+    end
+
+    FileUtils.rm_rf("data")
+    FileUtils.mv "data_temp", "data"
+  # Closing reorder
+  end
+
+# Closing class List
 end

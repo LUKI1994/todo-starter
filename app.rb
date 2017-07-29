@@ -70,11 +70,6 @@ post "/lists/:id/rename" do
 end
 
 post "/lists/reorder" do 
-  # new_order = params["new_order"]
-  # FileUtils.cp_r("data", "data_temp")  
-
-  # original_files = Dir["data/*.md"]
-  # new_files = Dir["data_temp/*.md"]
-
-  # redirect back
+  List.reorder(params["new_order"])
+  redirect back
 end
