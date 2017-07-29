@@ -1,15 +1,20 @@
 function popUpModal(list, index) {
-  console.log("List Number: ", list)
-  console.log("Index Number: ", index)
 
-  const listNumber = "#" + (list - 1)
-  console.log(listNumber)
+  const items = $(".modal").toArray();
 
-  const item = "input[name='index']"
-  console.log(item)
-
-  const itemNumber = $(listNumber).siblings(item)
-  console.log(itemNumber)
+  items.forEach(function(item) {
+    if (item.id == list - 1) {
+      if ($(item).siblings("input[name='index']").attr("value") == index) {
+        
+        $(item).show();
+        $(item).on("click", function(event) {
+          if (event.target == item) {
+            $(item).hide()
+          }
+        })
+      }
+    }
+  })
 }
 
 const items = $("li.connected-items").toArray();

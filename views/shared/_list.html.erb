@@ -5,7 +5,7 @@
     <form class="rename-list hidden" action="lists/<%= list.id %>/rename" method="post">
       <input type="text" name="new_name" placeholder="<%= list.name %>" autofocus>
     </form>    
-      <form class="update-all" action="lists/update" method="post">
+      <form class="update-all" action="lists/update" method="post" data-order="<%= list_Number %>">
         <input type="hidden" name="id" value="<%= list.id %>">
         <input type="hidden" name="name" value="<%= list.name %>">
         <div class="list-header-container">

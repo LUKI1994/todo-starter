@@ -1,4 +1,26 @@
-sortable("#scroller");
+const lists = sortable("#scroller");
+
+function renameFiles(order) {
+  console.log("Renaming the lists");
+  console.log(order);
+  temp = $(order).siblings("form.update-all").toArray()
+  newOrder = []
+  
+  temp.forEach(function(e) {
+    newOrder.push($(e).attr("data-order"))
+  })
+  
+  $.ajax({
+    url: "http://localhost:9393/lists/reorder",
+    method: "post",
+    data: {"new_order": newOrder}
+  })
+}
+
+lists[0].addEventListener("sortupdate", function(e) {
+  list = $("form.rename-list").toArray()
+  renameFiles(list)
+})
 
 function submitWithAjax(form) {
   var $form = $(form);

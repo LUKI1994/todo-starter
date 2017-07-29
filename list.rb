@@ -45,6 +45,6 @@ class List
       list = List.new(f[5])
       list.load_from_file
       list
-    end    
+    end
   end
 end

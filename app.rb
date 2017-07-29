@@ -1,5 +1,7 @@
 require 'bundler/setup'
 require 'colorize'
+require 'fileutils'
+
 Bundler.require
 
 require_relative "list"
@@ -65,4 +67,14 @@ post "/lists/:id/rename" do
     end
   end
   redirect back
+end
+
+post "/lists/reorder" do 
+  # new_order = params["new_order"]
+  # FileUtils.cp_r("data", "data_temp")  
+
+  # original_files = Dir["data/*.md"]
+  # new_files = Dir["data_temp/*.md"]
+
+  # redirect back
 end
