@@ -23,4 +23,8 @@
 
 **Additional User Stories:**
 
-Feel free to add any more enhancements that you made here.
+- [x] Created a popup modal for future additions such as comments and longer descriptions
+- [x] User can reorder the list
+
+## Gif Walkthrough
+[Here we go](./todo-app.gif)

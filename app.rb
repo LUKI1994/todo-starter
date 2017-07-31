@@ -1,6 +1,5 @@
 require 'bundler/setup'
 require 'colorize'
-require 'fileutils'
 
 Bundler.require
 
@@ -24,15 +23,12 @@ post "/lists/update" do
   # no need to load from file. we will save new contents to file
 
   items = params["items"].map do |item_hash|
-    puts "creating Item from item_hash: #{item_hash}".colorize(:green)
     Item.new(item_hash["name"], item_hash["status"])
   end
 
   list.items = items
 
-  debug_params
   if params["toggle"]
-    puts "Toggle: #{params["toggle"]}"
     list.toggle_item(params["toggle"])
   end
 
@@ -43,7 +39,6 @@ end
 post "/lists/:id/items/add" do
   list = List.new(params["id"])
   list.load_from_file
-  puts "Creating item #{params['name']} for list #{params['id']}"
   if params["name"]
     list.add(params["name"])
     list.save!
@@ -57,7 +52,6 @@ post "/lists" do
 end
 
 post "/lists/:id/rename" do
-  debug_params
   lists = List.load_all
   lists.each do |l|
     if params[:id] == l.id
